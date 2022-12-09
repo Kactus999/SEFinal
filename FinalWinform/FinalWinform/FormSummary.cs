@@ -73,6 +73,10 @@ namespace FinalWinform
                     lb_total.Text = $"Total Import of {month}/{year}: {total}$";
                     lb_total.Visible = true;
                 }
+                else
+                {
+                    MessageBox.Show("No data");
+                }
             }
         }
 
@@ -109,7 +113,7 @@ namespace FinalWinform
             }
             else if(month != "All")
             {
-                string sSQL = $"SELECT de.DeliveryID,de.DeliveryDate,de.PaymentStatus,AgentID,Pname,Quantity FROM Deliveries de INNER JOIN DeliveryDetails det ON de.DeliveryID = det.DeliveryID WHERE YEAR(de.DeliveryDate) = {year}";
+                string sSQL = $"SELECT de.DeliveryID,de.DeliveryDate,de.PaymentStatus,AgentID,Pname,Quantity FROM Deliveries de INNER JOIN DeliveryDetails det ON de.DeliveryID = det.DeliveryID WHERE YEAR(de.DeliveryDate) = {year} AND Month(de.DeliveryDate) = {month}";
                 string findTotal = $"SELECT SUM(Price * Quantity) FROM Deliveries de INNER JOIN DeliveryDetails det ON de.DeliveryID = det.DeliveryID WHERE YEAR(de.DeliveryDate) = {year} AND Month(de.DeliveryDate) = {month} ";
                 SqlCommand cmd = new SqlCommand(sSQL, Conn);
                 SqlCommand findTotalCmd = new SqlCommand(findTotal, Conn);
