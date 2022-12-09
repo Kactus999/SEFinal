@@ -58,7 +58,7 @@ namespace FinalWinform
             this.btn_newImport.Name = "btn_newImport";
             this.btn_newImport.Size = new System.Drawing.Size(118, 26);
             this.btn_newImport.TabIndex = 2;
-            this.btn_newImport.Text = "New item";
+            this.btn_newImport.Text = "Add item";
             this.btn_newImport.UseVisualStyleBackColor = true;
             this.btn_newImport.Click += new System.EventHandler(this.btn_newImport_Click);
             // 

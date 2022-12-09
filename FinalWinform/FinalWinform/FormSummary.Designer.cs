@@ -38,6 +38,7 @@ namespace FinalWinform
             this.btn_viewExport = new System.Windows.Forms.Button();
             this.lb_total = new System.Windows.Forms.Label();
             this.lb_viewing = new System.Windows.Forms.Label();
+            this.btn_BestSelling = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.datagrid_summary)).BeginInit();
             this.SuspendLayout();
             // 
@@ -146,7 +147,7 @@ namespace FinalWinform
             this.lb_total.AutoSize = true;
             this.lb_total.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lb_total.ForeColor = System.Drawing.Color.Gainsboro;
-            this.lb_total.Location = new System.Drawing.Point(25, 257);
+            this.lb_total.Location = new System.Drawing.Point(25, 254);
             this.lb_total.Name = "lb_total";
             this.lb_total.Size = new System.Drawing.Size(64, 25);
             this.lb_total.TabIndex = 7;
@@ -164,12 +165,24 @@ namespace FinalWinform
             this.lb_viewing.TabIndex = 8;
             this.lb_viewing.Text = "label3";
             // 
+            // btn_BestSelling
+            // 
+            this.btn_BestSelling.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btn_BestSelling.Location = new System.Drawing.Point(30, 398);
+            this.btn_BestSelling.Name = "btn_BestSelling";
+            this.btn_BestSelling.Size = new System.Drawing.Size(107, 30);
+            this.btn_BestSelling.TabIndex = 9;
+            this.btn_BestSelling.Text = "Best-selling";
+            this.btn_BestSelling.UseVisualStyleBackColor = true;
+            this.btn_BestSelling.Click += new System.EventHandler(this.btn_BestSelling_Click);
+            // 
             // FormSummary
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(33)))), ((int)(((byte)(74)))));
             this.ClientSize = new System.Drawing.Size(890, 536);
+            this.Controls.Add(this.btn_BestSelling);
             this.Controls.Add(this.lb_viewing);
             this.Controls.Add(this.lb_total);
             this.Controls.Add(this.btn_viewExport);
@@ -199,5 +212,6 @@ namespace FinalWinform
         private System.Windows.Forms.Button btn_viewExport;
         private System.Windows.Forms.Label lb_total;
         private System.Windows.Forms.Label lb_viewing;
+        private System.Windows.Forms.Button btn_BestSelling;
     }
 }

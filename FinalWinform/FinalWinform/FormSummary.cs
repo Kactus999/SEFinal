@@ -48,7 +48,7 @@ namespace FinalWinform
                     datagrid_summary.DataSource = dt;
                     lb_viewing.Text = $"Viewing all import of year {year}";
                     lb_viewing.Visible = true;
-                    lb_total.Text = $"Total Import: {total}$";
+                    lb_total.Text = $"Total outcome: {total}$";
                     lb_total.Visible = true;
                 }
             }
@@ -70,7 +70,7 @@ namespace FinalWinform
                     datagrid_summary.DataSource = dt;
                     lb_viewing.Text = $"Viewing import of {month}/{year}";
                     lb_viewing.Visible = true;
-                    lb_total.Text = $"Total Import of {month}/{year}: {total}$";
+                    lb_total.Text = $"Total outcome {month}/{year}: {total}$";
                     lb_total.Visible = true;
                 }
                 else
@@ -103,7 +103,7 @@ namespace FinalWinform
                     datagrid_summary.DataSource = dt;
                     lb_viewing.Text = $"Viewing all export of year {year}";
                     lb_viewing.Visible = true;
-                    lb_total.Text = $"Total export: {total}$";
+                    lb_total.Text = $"Total income: {total}$";
                     lb_total.Visible = true;
                 }
                 else
@@ -129,7 +129,7 @@ namespace FinalWinform
                     datagrid_summary.DataSource = dt;
                     lb_viewing.Text = $"Viewing export of {month}/{year}";
                     lb_viewing.Visible = true;
-                    lb_total.Text = $"Total export of {month}/{year}: {total}$";
+                    lb_total.Text = $"Total income {month}/{year}: {total}$";
                     lb_total.Visible = true;
                 }
                 else
@@ -143,6 +143,50 @@ namespace FinalWinform
         {
             combo_month.SelectedIndex = 0;
             combo_year.SelectedIndex = 0;
+        }
+
+        private void btn_BestSelling_Click(object sender, EventArgs e)
+        {
+            string month = combo_month.SelectedItem.ToString();
+            string year = combo_year.SelectedItem.ToString();
+            string total;
+            if(month == "All")
+            {
+                string sSQL = $"SELECT Pname,SUM(Quantity) AS TotalSales FROM Deliveries de INNER JOIN DeliveryDetails det ON de.DeliveryID = det.DeliveryID WHERE YEAR(de.DeliveryDate) = {year} GROUP BY Pname,Quantity ORDER BY Quantity DESC";
+                SqlCommand cmd = new SqlCommand(sSQL, Conn);
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                DataTable dt = new DataTable();
+                da.Fill(dt);
+                if(dt.Rows.Count > 0)
+                {
+                    datagrid_summary.DataSource = dt;
+                    lb_viewing.Text = $"Viewing best selling products of year {year}";
+                    lb_total.Text = "";
+                }
+                else
+                {
+                    MessageBox.Show("No data");
+                }
+            }
+            else if(month != "All")
+            {
+                string sSQL = $"SELECT Pname,SUM(Quantity) AS TotalSales FROM Deliveries de INNER JOIN DeliveryDetails det ON de.DeliveryID = det.DeliveryID WHERE YEAR(de.DeliveryDate) = {year} AND MONTH(de.DeliveryDate) = {month} GROUP BY Pname,Quantity ORDER BY Quantity DESC";
+                SqlCommand cmd = new SqlCommand(sSQL, Conn);
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                DataTable dt = new DataTable();
+                da.Fill(dt);
+                if (dt.Rows.Count > 0)
+                {
+                    datagrid_summary.DataSource = dt;
+                    lb_viewing.Text = $"Viewing best selling products of {month}/{year}";
+                    lb_total.Text = "";
+                }
+                else
+                {
+                    MessageBox.Show("No data");
+                }
+
+            }
         }
     }
 }
