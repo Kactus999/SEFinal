@@ -1,0 +1,15 @@
+D:\Workspace\Csharp\Software Engineering\Final_Project\FinalWinform\FinalWinform\bin\Debug\FinalWinform.exe.config
+D:\Workspace\Csharp\Software Engineering\Final_Project\FinalWinform\FinalWinform\bin\Debug\FinalWinform.exe
+D:\Workspace\Csharp\Software Engineering\Final_Project\FinalWinform\FinalWinform\bin\Debug\FinalWinform.pdb
+D:\Workspace\Csharp\Software Engineering\Final_Project\FinalWinform\FinalWinform\bin\Debug\FontAwesome.Sharp.dll
+D:\Workspace\Csharp\Software Engineering\Final_Project\FinalWinform\FinalWinform\obj\Debug\FinalWinform.csproj.AssemblyReference.cache
+D:\Workspace\Csharp\Software Engineering\Final_Project\FinalWinform\FinalWinform\obj\Debug\FinalWinform.Properties.Resources.resources
+D:\Workspace\Csharp\Software Engineering\Final_Project\FinalWinform\FinalWinform\obj\Debug\FinalWinform.csproj.GenerateResource.cache
+D:\Workspace\Csharp\Software Engineering\Final_Project\FinalWinform\FinalWinform\obj\Debug\FinalWinform.csproj.CoreCompileInputs.cache
+D:\Workspace\Csharp\Software Engineering\Final_Project\FinalWinform\FinalWinform\obj\Debug\FinalWinform.csproj.CopyComplete
+D:\Workspace\Csharp\Software Engineering\Final_Project\FinalWinform\FinalWinform\obj\Debug\FinalWinform.exe
+D:\Workspace\Csharp\Software Engineering\Final_Project\FinalWinform\FinalWinform\obj\Debug\FinalWinform.pdb
+D:\Workspace\Csharp\Software Engineering\Final_Project\FinalWinform\FinalWinform\obj\Debug\FinalWinform.FormImport.resources
+D:\Workspace\Csharp\Software Engineering\Final_Project\FinalWinform\FinalWinform\obj\Debug\FinalWinform.FormMain.resources
+D:\Workspace\Csharp\Software Engineering\Final_Project\FinalWinform\FinalWinform\obj\Debug\FinalWinform.FormExport.resources
+D:\Workspace\Csharp\Software Engineering\Final_Project\FinalWinform\FinalWinform\obj\Debug\FinalWinform.FormSummary.resources
