@@ -1,0 +1,130 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="KienAnCorpModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Agent">
+    <Key>
+      <PropertyRef Name="AgentID" />
+    </Key>
+    <Property Name="AgentID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="AgentName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="AgentStorage" Relationship="Self.FK__AgentStor__Agent__2F10007B" FromRole="Agents" ToRole="AgentStorage" />
+    <NavigationProperty Name="DeliveryDetails" Relationship="Self.FK__DeliveryD__Agent__33D4B598" FromRole="Agents" ToRole="DeliveryDetails" />
+  </EntityType>
+  <EntityType Name="Company">
+    <Key>
+      <PropertyRef Name="PID" />
+    </Key>
+    <Property Name="PID" Type="Int32" Nullable="false" />
+    <Property Name="PName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Quantity" Type="Int32" />
+    <Property Name="Price" Type="Int32" />
+    <NavigationProperty Name="DeliveryDetails" Relationship="Self.FK__DeliveryDet__PID__34C8D9D1" FromRole="Company" ToRole="DeliveryDetails" />
+  </EntityType>
+  <EntityType Name="Delivery">
+    <Key>
+      <PropertyRef Name="DeliveryID" />
+    </Key>
+    <Property Name="DeliveryID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="DeliveryDate" Type="DateTime" Precision="0" />
+    <Property Name="DeliveryStatus" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="PaymentStatus" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="PaymentMethod" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="DeliveryDetails" Relationship="Self.FK__DeliveryD__Deliv__32E0915F" FromRole="Deliveries" ToRole="DeliveryDetails" />
+  </EntityType>
+  <EntityType Name="AgentStorage">
+    <Key>
+      <PropertyRef Name="AgentID" />
+    </Key>
+    <Property Name="AgentID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="PID" Type="Int32" />
+    <Property Name="PName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Quantity" Type="Int32" />
+    <NavigationProperty Name="Agent" Relationship="Self.FK__AgentStor__Agent__2F10007B" FromRole="AgentStorage" ToRole="Agents" />
+  </EntityType>
+  <EntityType Name="DeliveryDetail">
+    <Key>
+      <PropertyRef Name="DeliveryID" />
+      <PropertyRef Name="AgentID" />
+      <PropertyRef Name="PID" />
+    </Key>
+    <Property Name="DeliveryID" Type="Int32" Nullable="false" />
+    <Property Name="AgentID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="PID" Type="Int32" Nullable="false" />
+    <Property Name="Pname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Quantity" Type="Int32" />
+    <Property Name="Price" Type="Int32" />
+    <NavigationProperty Name="Agent" Relationship="Self.FK__DeliveryD__Agent__33D4B598" FromRole="DeliveryDetails" ToRole="Agents" />
+    <NavigationProperty Name="Company" Relationship="Self.FK__DeliveryDet__PID__34C8D9D1" FromRole="DeliveryDetails" ToRole="Company" />
+    <NavigationProperty Name="Delivery" Relationship="Self.FK__DeliveryD__Deliv__32E0915F" FromRole="DeliveryDetails" ToRole="Deliveries" />
+  </EntityType>
+  <Association Name="FK__AgentStor__Agent__2F10007B">
+    <End Role="Agents" Type="Self.Agent" Multiplicity="1" />
+    <End Role="AgentStorage" Type="Self.AgentStorage" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Agents">
+        <PropertyRef Name="AgentID" />
+      </Principal>
+      <Dependent Role="AgentStorage">
+        <PropertyRef Name="AgentID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__DeliveryD__Agent__33D4B598">
+    <End Role="Agents" Type="Self.Agent" Multiplicity="1" />
+    <End Role="DeliveryDetails" Type="Self.DeliveryDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Agents">
+        <PropertyRef Name="AgentID" />
+      </Principal>
+      <Dependent Role="DeliveryDetails">
+        <PropertyRef Name="AgentID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__DeliveryDet__PID__34C8D9D1">
+    <End Role="Company" Type="Self.Company" Multiplicity="1" />
+    <End Role="DeliveryDetails" Type="Self.DeliveryDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Company">
+        <PropertyRef Name="PID" />
+      </Principal>
+      <Dependent Role="DeliveryDetails">
+        <PropertyRef Name="PID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__DeliveryD__Deliv__32E0915F">
+    <End Role="Deliveries" Type="Self.Delivery" Multiplicity="1" />
+    <End Role="DeliveryDetails" Type="Self.DeliveryDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Deliveries">
+        <PropertyRef Name="DeliveryID" />
+      </Principal>
+      <Dependent Role="DeliveryDetails">
+        <PropertyRef Name="DeliveryID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="DevConn" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Agents" EntityType="Self.Agent" />
+    <EntitySet Name="Companies" EntityType="Self.Company" />
+    <EntitySet Name="Deliveries" EntityType="Self.Delivery" />
+    <EntitySet Name="AgentStorages" EntityType="Self.AgentStorage" />
+    <EntitySet Name="DeliveryDetails" EntityType="Self.DeliveryDetail" />
+    <AssociationSet Name="FK__AgentStor__Agent__2F10007B" Association="Self.FK__AgentStor__Agent__2F10007B">
+      <End Role="Agents" EntitySet="Agents" />
+      <End Role="AgentStorage" EntitySet="AgentStorages" />
+    </AssociationSet>
+    <AssociationSet Name="FK__DeliveryD__Agent__33D4B598" Association="Self.FK__DeliveryD__Agent__33D4B598">
+      <End Role="Agents" EntitySet="Agents" />
+      <End Role="DeliveryDetails" EntitySet="DeliveryDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK__DeliveryDet__PID__34C8D9D1" Association="Self.FK__DeliveryDet__PID__34C8D9D1">
+      <End Role="Company" EntitySet="Companies" />
+      <End Role="DeliveryDetails" EntitySet="DeliveryDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK__DeliveryD__Deliv__32E0915F" Association="Self.FK__DeliveryD__Deliv__32E0915F">
+      <End Role="Deliveries" EntitySet="Deliveries" />
+      <End Role="DeliveryDetails" EntitySet="DeliveryDetails" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
